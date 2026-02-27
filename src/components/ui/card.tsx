@@ -11,9 +11,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       ref={ref}
       className={cn(
         "relative",
-        "border-solid border-t-[72px] border-x-[52px] border-b-[52px] wc-card-border",
-        "[border-image-slice:72_52_52_52_fill] [border-image-repeat:stretch]",
-        "px-8 pt-8 pb-6",
+        "border-solid border-t-[90px] border-x-[65px] border-b-[65px] wc-card-border",
+        "[border-image-slice:90_65_65_65_fill] [border-image-repeat:stretch]",
+        "px-8 pt-4 pb-4",
         highlight && "shadow-[inset_0_0_30px_rgba(201,168,76,0.08),0_0_20px_rgba(201,168,76,0.15)]",
         className
       )}
