@@ -37,7 +37,7 @@ export function StatRow({ label, value, color, delay = 0 }: StatRowProps) {
     <div
       ref={ref}
       className={cn(
-        "flex justify-between items-center px-4 py-2.5 mb-1 transition-all duration-500",
+        "flex justify-between items-center px-4 py-2.5 mb-1 -mx-4 transition-all duration-500",
         visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-5"
       )}
       style={{

@@ -19,7 +19,7 @@ export function MatRow({ name, desc, tier }: MatRowProps) {
 
   return (
     <div
-      className="flex gap-4 items-start px-4 py-3.5 mb-1"
+      className="flex gap-4 items-start px-4 py-3.5 mb-1 -mx-4"
       style={{
         background: `color-mix(in srgb, ${bg} 8%, transparent)`,
         borderLeft: `3px solid ${bg}`,

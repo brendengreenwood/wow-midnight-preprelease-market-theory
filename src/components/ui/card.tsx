@@ -13,7 +13,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         "relative",
         "border-solid border-t-[90px] border-x-[65px] border-b-[65px] wc-card-border",
         "[border-image-slice:90_65_65_65_fill] [border-image-repeat:stretch]",
-        "px-8 pt-4 pb-4",
+        "px-12 pt-4 pb-4",
         highlight && "shadow-[inset_0_0_30px_rgba(201,168,76,0.08),0_0_20px_rgba(201,168,76,0.15)]",
         className
       )}
