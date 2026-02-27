@@ -10,9 +10,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(
-        "relative rounded-sm p-7 wc-card-border",
-        "border-[24px] border-solid border-transparent",
-        "bg-gradient-to-br from-[var(--wc-stone)] to-[var(--wc-stone-dark)]",
+        "relative",
+        "border-solid border-[24px] wc-card-border",
+        "[border-image-slice:24_fill] [border-image-repeat:stretch]",
+        "px-8 py-6",
         highlight && "shadow-[inset_0_0_30px_rgba(201,168,76,0.08),0_0_20px_rgba(201,168,76,0.15)]",
         className
       )}
@@ -43,7 +44,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadi
     <h3
       ref={ref}
       className={cn(
-        "fantasy text-xs font-bold tracking-[2px] uppercase text-[var(--wc-gold-dim)]",
+        "fantasy text-xs font-bold tracking-[2px] uppercase text-[var(--wc-gold-dim)] mb-3",
         className
       )}
       {...props}
