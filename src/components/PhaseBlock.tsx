@@ -1,5 +1,3 @@
-import { T, FONT_DISPLAY, FONT_BODY } from '@/theme'
-
 interface PhaseBlockProps {
   week: string
   label: string
@@ -7,22 +5,39 @@ interface PhaseBlockProps {
   idx: number
 }
 
+const colors = ["var(--wc-green)", "var(--wc-gold-bright)", "var(--wc-red)"]
+
 export function PhaseBlock({ week, label, desc, idx }: PhaseBlockProps) {
-  const colors = [T.green, T.goldBright, T.red]
+  const color = colors[idx]
+
   return (
-    <div style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: "32px" }}>
-        <div style={{
-          width: "12px", height: "12px", borderRadius: "50%",
-          background: colors[idx], border: `2px solid ${colors[idx]}`,
-          boxShadow: `0 0 8px ${colors[idx]}66`,
-        }} />
-        {idx < 2 && <div style={{ width: "2px", flex: 1, background: T.stoneLight }} />}
+    <div className="flex gap-4 mb-4">
+      <div className="flex flex-col items-center min-w-[32px]">
+        <div
+          className="w-3 h-3 rounded-full"
+          style={{
+            background: color,
+            border: `2px solid ${color}`,
+            boxShadow: `0 0 8px color-mix(in srgb, ${color} 40%, transparent)`,
+          }}
+        />
+        {idx < 2 && (
+          <div className="w-0.5 flex-1 bg-[var(--wc-stone-light)]" />
+        )}
       </div>
-      <div style={{ paddingBottom: "8px" }}>
-        <div style={{ fontFamily: FONT_DISPLAY, fontSize: "11px", color: colors[idx], letterSpacing: "1.5px", textTransform: "uppercase", fontWeight: 700 }}>{week}</div>
-        <div style={{ fontFamily: FONT_DISPLAY, fontSize: "16px", color: T.text, fontWeight: 700, margin: "4px 0" }}>{label}</div>
-        <div style={{ fontFamily: FONT_BODY, fontSize: "14px", color: T.textDim, lineHeight: 1.5 }}>{desc}</div>
+      <div className="pb-2">
+        <div
+          className="fantasy text-[11px] tracking-[1.5px] uppercase font-bold"
+          style={{ color }}
+        >
+          {week}
+        </div>
+        <div className="fantasy text-base font-bold text-[var(--wc-text)] my-1">
+          {label}
+        </div>
+        <div className="text-sm text-[var(--wc-text-dim)] leading-relaxed">
+          {desc}
+        </div>
       </div>
     </div>
   )

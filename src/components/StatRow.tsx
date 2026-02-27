@@ -1,36 +1,58 @@
-import { useState, useEffect, useRef } from 'react'
-import { T, FONT_DISPLAY, FONT_BODY } from '@/theme'
+import { useState, useEffect, useRef } from "react"
+import { cn } from "@/lib/utils"
 
 interface StatRowProps {
   label: string
   value: string
-  color: string
+  color: "gold" | "gold-bright" | "ember" | "ember-bright" | "dim" | "purple"
   delay?: number
+}
+
+const colorMap = {
+  gold: "var(--wc-gold)",
+  "gold-bright": "var(--wc-gold-bright)",
+  ember: "var(--wc-ember)",
+  "ember-bright": "var(--wc-ember-bright)",
+  dim: "var(--wc-text-dim)",
+  purple: "var(--wc-void-purple)",
 }
 
 export function StatRow({ label, value, color, delay = 0 }: StatRowProps) {
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const colorValue = colorMap[color]
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) setVisible(true)
-    }, { threshold: 0.3 })
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVisible(true)
+      },
+      { threshold: 0.3 }
+    )
     if (ref.current) obs.observe(ref.current)
     return () => obs.disconnect()
   }, [])
 
   return (
-    <div ref={ref} style={{
-      display: "flex", justifyContent: "space-between", alignItems: "center",
-      padding: "10px 16px", marginBottom: "4px",
-      background: visible ? `${color}0D` : "transparent",
-      borderLeft: `3px solid ${visible ? color : "transparent"}`,
-      transition: `all 0.5s ease ${delay}s`,
-      opacity: visible ? 1 : 0, transform: visible ? "translateX(0)" : "translateX(-20px)",
-    }}>
-      <span style={{ fontFamily: FONT_BODY, fontSize: "14px", color: T.textDim }}>{label}</span>
-      <span style={{ fontFamily: FONT_DISPLAY, fontSize: "18px", fontWeight: 700, color, letterSpacing: "0.5px" }}>{value}</span>
+    <div
+      ref={ref}
+      className={cn(
+        "flex justify-between items-center px-4 py-2.5 mb-1 transition-all duration-500",
+        visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-5"
+      )}
+      style={{
+        transitionDelay: `${delay}s`,
+        background: visible ? `color-mix(in srgb, ${colorValue} 5%, transparent)` : "transparent",
+        borderLeft: `3px solid ${visible ? colorValue : "transparent"}`,
+      }}
+    >
+      <span className="text-sm text-[var(--wc-text-dim)]">{label}</span>
+      <span
+        className="fantasy text-lg font-bold tracking-wide"
+        style={{ color: colorValue }}
+      >
+        {value}
+      </span>
     </div>
   )
 }

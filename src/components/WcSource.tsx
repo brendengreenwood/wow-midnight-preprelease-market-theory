@@ -1,5 +1,3 @@
-import { T, FONT_DISPLAY, FONT_BODY } from '@/theme'
-
 interface WcSourceProps {
   text: string
   url: string
@@ -7,16 +5,14 @@ interface WcSourceProps {
 
 export function WcSource({ text, url }: WcSourceProps) {
   return (
-    <div style={{
-      marginTop: "16px", padding: "12px 16px",
-      background: `linear-gradient(135deg, ${T.ink}, #161210)`,
-      border: `1px solid ${T.stoneLight}`, borderLeft: `3px solid ${T.voidPurple}`,
-      borderRadius: "2px", fontSize: "13px", fontFamily: FONT_BODY,
-      color: T.textDim, lineHeight: 1.5,
-    }}>
-      <span style={{ color: T.voidPurple, fontWeight: 700, fontSize: "10px", letterSpacing: "1px", textTransform: "uppercase", fontFamily: FONT_DISPLAY }}>Source</span>
-      <br /><em>"{text}"</em>
-      <br /><span style={{ color: T.gold, fontSize: "12px" }}>— {url}</span>
+    <div className="mt-4 px-4 py-3 bg-gradient-to-br from-[var(--wc-ink)] to-[#161210] border border-[var(--wc-stone-light)] border-l-[3px] border-l-[var(--wc-void-purple)] rounded-sm text-[13px] text-[var(--wc-text-dim)] leading-relaxed">
+      <span className="fantasy text-[var(--wc-void-purple)] font-bold text-[10px] tracking-[1px] uppercase">
+        Source
+      </span>
+      <br />
+      <em>"{text}"</em>
+      <br />
+      <span className="text-[var(--wc-gold)] text-xs">— {url}</span>
     </div>
   )
 }

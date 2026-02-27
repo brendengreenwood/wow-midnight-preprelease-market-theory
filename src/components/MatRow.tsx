@@ -1,7 +1,6 @@
-import { T, FONT_DISPLAY, FONT_BODY } from '@/theme'
-import { WcBadge } from './WcBadge'
+import { Badge } from "./ui/badge"
 
-type Tier = 'S' | 'A' | 'B'
+type Tier = "S" | "A" | "B"
 
 interface MatRowProps {
   name: string
@@ -9,20 +8,31 @@ interface MatRowProps {
   tier: Tier
 }
 
-const tierColors: Record<Tier, string> = { S: T.emberBright, A: T.goldBright, B: T.parchmentDim }
-const tierBg: Record<Tier, string> = { S: `${T.ember}22`, A: `${T.gold}15`, B: `${T.parchment}10` }
+const tierVariants = {
+  S: { variant: "ember" as const, bg: "var(--wc-ember)" },
+  A: { variant: "gold" as const, bg: "var(--wc-gold)" },
+  B: { variant: "default" as const, bg: "var(--wc-parchment)" },
+}
 
 export function MatRow({ name, desc, tier }: MatRowProps) {
+  const { variant, bg } = tierVariants[tier]
+
   return (
-    <div style={{
-      display: "flex", gap: "16px", alignItems: "flex-start",
-      padding: "14px 16px", marginBottom: "4px",
-      background: tierBg[tier], borderLeft: `3px solid ${tierColors[tier]}`,
-    }}>
-      <WcBadge color={tierColors[tier]}>{tier}</WcBadge>
+    <div
+      className="flex gap-4 items-start px-4 py-3.5 mb-1"
+      style={{
+        background: `color-mix(in srgb, ${bg} 8%, transparent)`,
+        borderLeft: `3px solid ${bg}`,
+      }}
+    >
+      <Badge variant={variant}>{tier}</Badge>
       <div>
-        <div style={{ fontFamily: FONT_DISPLAY, fontSize: "14px", color: T.text, fontWeight: 700 }}>{name}</div>
-        <div style={{ fontFamily: FONT_BODY, fontSize: "13px", color: T.textDim, marginTop: "2px", lineHeight: 1.4 }}>{desc}</div>
+        <div className="fantasy text-sm font-bold text-[var(--wc-text)]">
+          {name}
+        </div>
+        <div className="text-[13px] text-[var(--wc-text-dim)] mt-0.5 leading-snug">
+          {desc}
+        </div>
       </div>
     </div>
   )

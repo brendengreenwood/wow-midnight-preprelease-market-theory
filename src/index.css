@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "./styles/warcraft.css";
+
+:root {
+  --wc-gold: #C9A84C;
+  --wc-gold-bright: #FFD700;
+  --wc-gold-dim: #8B7332;
+  --wc-void-purple: #7B4FBF;
+  --wc-void-deep: #3D1F6D;
+  --wc-ember: #D4551A;
+  --wc-ember-bright: #FF6B2B;
+  --wc-stone: #2A2318;
+  --wc-stone-dark: #1A170F;
+  --wc-stone-light: #3D3628;
+  --wc-parchment: #C4B48A;
+  --wc-parchment-dim: #9E8F6E;
+  --wc-ink: #0D0B08;
+  --wc-text: #E8DCC8;
+  --wc-text-dim: #9E9480;
+  --wc-green: #1EBB4F;
+  --wc-blue: #4A9EFF;
+  --wc-red: #E03E3E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--wc-ink);
+  color: var(--wc-text);
+  font-family: "Crimson Text", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--wc-ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wc-gold-dim);
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(123, 79, 191, 0.33);
+  color: var(--wc-gold-bright);
+}
